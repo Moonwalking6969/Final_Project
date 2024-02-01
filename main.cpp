@@ -278,8 +278,8 @@ void ClassReport(){
                 lowest_name=name[i];
             }
     }
-    cout<<highest_name<<" has achieved a GPA of: "<<maximum<<endl;
-    cout<<lowest_name<<" has achieved a GPA of: "<<minimum<<endl;
+    cout<<"Highest GPA:"<<highest_name<<" has achieved a GPA of: "<<maximum<<endl;
+    cout<<"Lowest GPA:"<<lowest_name<<" has achieved a GPA of: "<<minimum<<endl;
 }
 
 void RankStudents(){
