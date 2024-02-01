@@ -11,7 +11,7 @@ double GPA[50]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
 void AddStudent(int,string,string);
 void RemoveStudent(int);
 bool UpdateRecord(int,string,string);
-void GPAcalculate(int,int,int,int);
+void GPAcalculate(int,double,double,double);
 void DisplayStudent(int);
 void ClassReport();
 void RankStudents();
@@ -29,28 +29,52 @@ int main() {
         switch(choice){
             case 1:{
                 cout<<"Adding a Student Record: "<<endl;
-                int new_ID=0;
-                string new_first_name="lol";
-                string new_second_name="lol";
-                string new_phonenumber="lol";
-                cout<<"Enter the ID of the student to be added: ";
-                cin>>new_ID;
-                cout<<"Enter the First name of the student to be added: ";
-                cin>>new_first_name;
-                cout<<"Enter the Second name of the student to be added: ";
-                cin>>new_second_name;
-                string new_full_name=new_first_name+" "+new_second_name;
-                cout<<"Enter the phone number of the student to be added: ";
-                cin>>new_phonenumber;
-                cout<<"Note: You would have to calculate the GPA of the student you are adding by rerunning the program!"<<endl;
-                AddStudent(new_ID,new_full_name,new_phonenumber);
+                int count=0;
+                cout<<"How many students do you want to add?: ";
+                cin>>count;
+                if(count>50){
+                    cout<<"You cannot add more than 50 students."<<endl;
+                }else {
+                    int new_ID = 0;
+                    string new_first_name = "Michael";
+                    string new_second_name = "Jackson";
+                    string new_phonenumber = "2139075130";
+                    for (int i = 0; i < count; i++) {
+                        cout << "Enter the ID of the student to be added: ";
+                        cin >> new_ID;
+                        for (int j = 0; j < 50; j++) {
+                            if (ID[j] == new_ID) {
+                                do {
+                                    cout << "Two students cannot have same IDs.Please enter a valid ID: " << endl;
+                                    cin >> new_ID;
+                                } while (ID[j] == new_ID);
+                            }
+                        }
+                        cout << "Enter the First name of the student to be added: ";
+                        cin >> new_first_name;
+                        cout << "Enter the Second name of the student to be added: ";
+                        cin >> new_second_name;
+                        string new_full_name = new_first_name + " " + new_second_name;
+                        cout << "Enter the phone number of the student to be added: ";
+                        cin >> new_phonenumber;
+                        cout
+                                << "Note: You would have to calculate the GPA of the student you are adding by rerunning the program!"
+                                << endl;
+                        AddStudent(new_ID, new_full_name, new_phonenumber);
+                    }
+                }
             }break;
             case 2:{
                 cout<<"Removing a Student Record: "<<endl;
                 int removal_ID=0;
-                cout<<"Enter the ID of the student who is to be removed: ";
-                cin>>removal_ID;
-                RemoveStudent(removal_ID);
+                int count=0;
+                cout << "How many students do you want to remove?: ";
+                cin >> count;
+                for(int i=0;i<count;i++) {
+                    cout << "Enter the ID of the student who is to be removed: ";
+                    cin >> removal_ID;
+                    RemoveStudent(removal_ID);
+                }
             }break;
             case 3:{
                 cout<<"Updating Contact Information: "<<endl;
@@ -58,28 +82,37 @@ int main() {
                 string update_first_name="null";
                 string update_second_name="null";
                 string update_phonenumber="null";
-                cout<<"Enter the ID of the student: "<<endl;
-                cin>>update_ID;
-                cout<<"Enter the Updated First Name of the student: ";
-                cin>>update_first_name;
-                cout<<"Enter the Updated Second Name of the student: ";
-                cin>>update_second_name;
-                string update_full_name=update_first_name+" "+update_second_name;
-                cout<<"Enter the Updated Phone Number of the student: ";
-                cin>>update_phonenumber;
-                if(UpdateRecord(update_ID,update_full_name,update_phonenumber)){
-                    cout<<"Record Successfully Updated!"<<endl;
-                }else{
-                    cout<<"Error! Failed to Update Record. Make sure your inputs are correct."<<endl;
+                int count=0;
+                cout << "How many students do you want to update?: ";
+                cin >> count;
+                for(int i=0;i<count;i++) {
+                    cout << "Enter the ID of the student: " << endl;
+                    cin >> update_ID;
+                    cout << "Enter the Updated First Name of the student: ";
+                    cin >> update_first_name;
+                    cout << "Enter the Updated Second Name of the student: ";
+                    cin >> update_second_name;
+                    string update_full_name = update_first_name + " " + update_second_name;
+                    cout << "Enter the Updated Phone Number of the student: ";
+                    cin >> update_phonenumber;
+                    if (UpdateRecord(update_ID, update_full_name, update_phonenumber)) {
+                        cout << "Record Successfully Updated!" << endl;
+                    } else {
+                        cout << "Error! Failed to Update Record. Make sure your inputs are correct." << endl;
+                    }
                 }
             }break;
             case 4:{
                 cout<<"Calculating GPA: "<<endl;
-                int marks1=0;
-                int marks2=0;
-                int marks3=0;
+                double marks1=0;
+                double marks2=0;
+                double marks3=0;
                 int input_ID=0;
                 bool calculated=false;
+                int count=0;
+                cout << "How many GPAs do you want to calculate?: ";
+                cin >> count;
+                for(int j=0;j<count;j++) {
                 cout<<"What is the ID of the student whose GPA is to be calculated?: ";
                 cin>>input_ID;
                 for(int i=0;i<50;i++){
@@ -97,13 +130,19 @@ int main() {
                 if(!calculated){
                     cout<<"Entered ID does not match any student. Please enter valid ID by rerunning the program!"<<endl;
                 }
+                }
             }break;
             case 5:{
                 cout<<"Displaying Student Information: "<<endl;
                 int ID_input=0;
-                cout<<"Enter the Student's ID to see his/her information: ";
-                cin>>ID_input;
-                DisplayStudent(ID_input);
+                int count=0;
+                cout << "How many Student's Information do you want to see?: ";
+                cin >> count;
+                for(int j=0;j<count;j++) {
+                    cout << "Enter the Student's ID to see his/her information: ";
+                    cin >> ID_input;
+                    DisplayStudent(ID_input);
+                }
             }break;
             case 6:{
                 cout<<"Generate Class Report: "<<endl;
@@ -140,8 +179,8 @@ int main() {
 
 void AddStudent(int ID_input,string name_input,string phone_input){
     bool added=false;
-    for(int i=0;i<50;i++){
-        if(ID[i]==-1 && name[i]=="null" && phone_number[i]=="null" && !added){
+    for(int i=1;i<50;i++){
+        if(ID[i]==-1 && name[i]=="null" && phone_number[i]=="null" && !added ){
             ID[i]=ID_input;
             name[i]=name_input;
             phone_number[i]=phone_input;
@@ -156,7 +195,7 @@ void AddStudent(int ID_input,string name_input,string phone_input){
 
 void RemoveStudent(int input_ID){
     bool removed=false;
-    for(int i=0;i<50;i++){
+    for(int i=1;i<50;i++){
         if(ID[i]==input_ID){
             ID[i]=-1;
             name[i]="null";
@@ -174,7 +213,7 @@ void RemoveStudent(int input_ID){
 bool UpdateRecord(int update_ID, string update_name, string update_phonenumber){
     bool student_found=false;
     int position=0;
-    for(int i=0;i<50;i++){
+    for(int i=1;i<50;i++){
         if(ID[i]==update_ID){
             student_found=true;
             position=i;
@@ -189,15 +228,15 @@ bool UpdateRecord(int update_ID, string update_name, string update_phonenumber){
     }
 }
 
-void GPAcalculate(int input_ID,int marks1,int marks2,int marks3){
+void GPAcalculate(int input_ID,double marks1,double marks2,double marks3){
     double calculatedgpa=(marks1*3+marks2*3+marks3*3)/12;
-    GPA[input_ID-1]=calculatedgpa;
+    GPA[input_ID]=calculatedgpa;
     cout<<"GPA calculated and stored successfully!"<<endl;
 }
 
 void DisplayStudent(int input_ID){
     bool student_found=false;
-    for(int i=0;i<50;i++){
+    for(int i=1;i<50;i++){
         if(ID[i]==input_ID){
             cout<<"Student ID: "<<ID[i]<<endl;
             cout<<"Student Name: "<<name[i]<<endl;
@@ -214,27 +253,27 @@ void DisplayStudent(int input_ID){
 void ClassReport(){
     double averageGPA=0.0;
     int count=0;
-    for(int i=0;i<50;i++){
+    for(int i=1;i<50;i++){
         if(GPA[i]!=0.0){
             count++;
         }
     }
-    for(int j=0;j<count;j++){
+    for(int j=1;j<count;j++){
         averageGPA=averageGPA+GPA[j];
     }
     if(count>0){
         averageGPA=averageGPA/count;
     }
     cout<<"Average GPA in the class is: "<<averageGPA<<endl;
-    double maximum=GPA[0];
-    double minimum=GPA[0];
+    double maximum=0.0;
+    double minimum=GPA[1];
     string highest_name="null";
     string lowest_name="null";
     for(int i=0;i<50;i++){
-            if(GPA[i]>maximum && (GPA[i]!=0.0 && maximum!=0.0)){
+            if(GPA[i]>maximum && GPA[i]!=0.0){
                 maximum=GPA[i];
                 highest_name=name[i];
-        }else if(GPA[i]<minimum && (GPA[i]!=0.0 && minimum!=0.0)){
+        }if(GPA[i]<minimum && GPA[i]!=0.0){
                 minimum=GPA[i];
                 lowest_name=name[i];
             }
@@ -253,7 +292,7 @@ void TopPerformer(){
 
 void SearchStudent(int input_ID){
     bool found=false;
-    for(int j=0;j<50;j++){
+    for(int j=1;j<50;j++){
         if(ID[j]==input_ID){
             cout<<"Student Name: "<<name[j]<<endl;
             found=true;
