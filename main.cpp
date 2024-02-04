@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -8,28 +10,42 @@ string name[50]={"null","null","null","null","null","null","null","null","null",
 string phone_number[50]={"null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null"};
 double GPA[50]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
 
+void swapstring(string &,string &);
+void swap(double &,double &);
 void AddStudent(int,string,string);
 void RemoveStudent(int);
 bool UpdateRecord(int,string,string);
 void GPAcalculate(int,double,double,double);
 void DisplayStudent(int);
 void ClassReport();
-void RankStudents();
+void RankStudents(char);
 void TopPerformer();
 void SearchStudent(int);
 void GraphicalRepresentation();
 
 int main() {
-    cout<<"Welcome to the Student Grade Management System!"<<endl;
+    cout << "****************************************" << endl;
+    cout << "*    Welcome to the Student Grade      *" << endl;
+    cout << "*         Management System!           *" << endl;
+    cout << "****************************************" << endl;
+    cout<<endl;
     int choice=0;
     char repeat='a';
     do{
-        cout<<"Enter 1 for Adding a Student record,\nEnter 2 for Removing a Student record,\nEnter 3 for Updating a Student record,\nEnter 4 for Calculating GPA,\nEnter 5 for Displaying Student Info,\nEnter 6 for Ranking Students,\nEnter 8 to See the Top Performer,\nEnter 9 to Search for a student based on his/her ID,\nEnter 10 to see the Graphical Representation of the class statistics: ";
+        cout<<"Enter 1 for Adding a Student record,                   Enter 2 for Removing a Student record,"
+              "\nEnter 3 for Updating a Student record,                 Enter 4 for Calculating GPA,"
+              "\nEnter 5 for Displaying Student Info,                   Enter 6 for Generate Class Report,"
+              "\nEnter 7 to Rank Students,                              Enter 8 to See the Top Performer,"
+              "\nEnter 9 to Search for a student based on his/her ID,   Enter 10 to see Graphical Representation of the class statistics"<<endl;
+        cout<<endl;
+        cout<<"Enter your Choice: ";
         cin>>choice;
         switch(choice){
+
             case 1:{
                 cout<<"Adding a Student Record: "<<endl;
                 int count=0;
+                cout<<endl;
                 cout<<"How many students do you want to add?: ";
                 cin>>count;
                 if(count>50){
@@ -40,44 +56,47 @@ int main() {
                     string new_second_name = "Jackson";
                     string new_phonenumber = "2139075130";
                     for (int i = 0; i < count; i++) {
-                        cout << "Enter the ID of the student to be added: ";
-                        cin >> new_ID;
-                        for (int j = 0; j < 50; j++) {
-                            if (ID[j] == new_ID) {
-                                do {
+                        cout<<"Enter the ID of the student: ";
+                        cin>>new_ID;
+                        for(int j=0;j<50;j++) {
+                            if(ID[j]==new_ID){
+                                do{
                                     cout << "Two students cannot have same IDs.Please enter a valid ID: " << endl;
                                     cin >> new_ID;
-                                } while (ID[j] == new_ID);
+                                }while (ID[j] == new_ID);
                             }
                         }
-                        cout << "Enter the First name of the student to be added: ";
-                        cin >> new_first_name;
-                        cout << "Enter the Second name of the student to be added: ";
-                        cin >> new_second_name;
-                        string new_full_name = new_first_name + " " + new_second_name;
-                        cout << "Enter the phone number of the student to be added: ";
-                        cin >> new_phonenumber;
-                        cout
-                                << "Note: You would have to calculate the GPA of the student you are adding by rerunning the program!"
-                                << endl;
+                        cout<<"Enter the First name of the student: ";
+                        cin>>new_first_name;
+                        cout<<"Enter the Second name of the student: ";
+                        cin>>new_second_name;
+                        string new_full_name=new_first_name + " " + new_second_name;
+                        cout<<"Enter the phone number of the student: ";
+                        cin>>new_phonenumber;
                         AddStudent(new_ID, new_full_name, new_phonenumber);
+                        cout<<endl;
+                        cout<<"Note: You would have to calculate their GPA!"<<endl;
                     }
                 }
             }break;
+
             case 2:{
                 cout<<"Removing a Student Record: "<<endl;
+                cout<<endl;
                 int removal_ID=0;
                 int count=0;
-                cout << "How many students do you want to remove?: ";
-                cin >> count;
+                cout<<"How many students do you want to remove?: ";
+                cin>>count;
                 for(int i=0;i<count;i++) {
-                    cout << "Enter the ID of the student who is to be removed: ";
-                    cin >> removal_ID;
+                    cout<<"Enter the ID of the student: ";
+                    cin>>removal_ID;
                     RemoveStudent(removal_ID);
                 }
             }break;
+
             case 3:{
                 cout<<"Updating Contact Information: "<<endl;
+                cout<<endl;
                 int update_ID=0;
                 string update_first_name="null";
                 string update_second_name="null";
@@ -102,8 +121,10 @@ int main() {
                     }
                 }
             }break;
+
             case 4:{
                 cout<<"Calculating GPA: "<<endl;
+                cout<<endl;
                 double marks1=0;
                 double marks2=0;
                 double marks3=0;
@@ -132,8 +153,10 @@ int main() {
                 }
                 }
             }break;
+
             case 5:{
                 cout<<"Displaying Student Information: "<<endl;
+                cout<<endl;
                 int ID_input=0;
                 int count=0;
                 cout << "How many Student's Information do you want to see?: ";
@@ -144,37 +167,71 @@ int main() {
                     DisplayStudent(ID_input);
                 }
             }break;
+
             case 6:{
                 cout<<"Generate Class Report: "<<endl;
+                cout<<endl;
                 ClassReport();
             }break;
+
             case 7:{
                 cout<<"Ranking Students: "<<endl;
-                RankStudents();
+                cout<<endl;
+                char order='T';
+                cout<<"What should be the order of the ranking?"<<endl;
+                cout<<"For Low to High: L"<<endl;
+                cout<<"For High to Low: H"<<endl;
+                cout<<endl;
+                cout<<"Enter your choice: ";
+                cin>>order;
+                RankStudents(order);
             }break;
+
             case 8:{
                 cout<<"Top Performers: "<<endl;
+                cout<<endl;
                 TopPerformer();
             }break;
+
             case 9:{
                 cout<<"Searching Student: "<<endl;
+                cout<<endl;
                 int input_ID=0;
-                cout<<"Enter the ID of the student you want to search: ";
+                cout<<"Enter the ID of the student: ";
                 cin>>input_ID;
                 SearchStudent(input_ID);
             }break;
+
             case 10:{
                 cout<<"Graphical Representation: "<<endl;
+                cout<<endl;
                 GraphicalRepresentation();
             }break;
+
             default:{
                 cout<<"Incorrect Choice. Try Again!"<<endl;
             }
         }
+        cout<<endl;
         cout<<"Do you want to rerun the program? (y/Y for yes,n/N for no): ";
         cin>>repeat;
+        cout<<endl;
     }while(repeat=='Y'||repeat=='y');
     return 0;
+}
+
+void swap(double &first_entry,double &last_entry){
+    double temp=0;
+    temp=first_entry;
+    first_entry=last_entry;
+    last_entry=temp;
+}
+
+void swapstring(string &first_entry,string &last_entry){
+    string temp="null";
+    temp=first_entry;
+    first_entry=last_entry;
+    last_entry=temp;
 }
 
 void AddStudent(int ID_input,string name_input,string phone_input){
@@ -203,10 +260,13 @@ void RemoveStudent(int input_ID){
             GPA[i]=0.0;
             removed=true;
             cout<<"Student Successfully removed!"<<endl;
+            cout<<endl;
         }
     }
+    cout<<endl;
     if(!removed){
         cout<<"Error! Input ID does not match any student in the record."<<endl;
+        cout<<endl;
     }
 }
 
@@ -243,10 +303,13 @@ void DisplayStudent(int input_ID){
             cout<<"Student Phone Number: "<<phone_number[i]<<endl;
             cout<<"Student GPA: "<<GPA[i]<<endl;
             student_found=true;
+            cout<<endl;
         }
     }
+    cout<<endl;
     if(!student_found){
         cout<<"Provided ID does not match any students in the record."<<endl;
+        cout<<endl;
     }
 }
 
@@ -269,25 +332,89 @@ void ClassReport(){
     double minimum=GPA[1];
     string highest_name="null";
     string lowest_name="null";
-    for(int i=0;i<50;i++){
+    for(int i=1;i<50;i++){
             if(GPA[i]>maximum && GPA[i]!=0.0){
                 maximum=GPA[i];
                 highest_name=name[i];
-        }if(GPA[i]<minimum && GPA[i]!=0.0){
+        }if((GPA[i] < minimum || minimum == GPA[1])){
                 minimum=GPA[i];
                 lowest_name=name[i];
             }
     }
-    cout<<"Highest GPA:"<<highest_name<<" has achieved a GPA of: "<<maximum<<endl;
-    cout<<"Lowest GPA:"<<lowest_name<<" has achieved a GPA of: "<<minimum<<endl;
+    cout<<"Highest GPA: "<<highest_name<<" has achieved a GPA of: "<<maximum<<endl;
+    cout<<"Lowest GPA: "<<lowest_name<<" has achieved a GPA of: "<<minimum<<endl;
 }
 
-void RankStudents(){
+void RankStudents(char order){
+    double GPAhightolow[50]= {0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+    double GPAlowtohigh[50]={0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};
+    string namehightolow[50]={"null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null"};
+    string namelowtohigh[50]={"null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null"};
+    string phonenumberlowtohigh[50]={"null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null"};
+    string phonenumberhightolow[50]={"null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null","null"};
+
+    for(int i=0;i<50;i++){
+        GPAhightolow[i]=GPA[i];
+        GPAlowtohigh[i]=GPA[i];
+        namehightolow[i]=name[i];
+        namelowtohigh[i]=name[i];
+        phonenumberlowtohigh[i]=phone_number[i];
+        phonenumberhightolow[i]=phone_number[i];
+    }
+    if(order=='L'){
+        for(int i=0;i<49;i++){
+            for(int j=0;j<49;j++){
+                if(GPAlowtohigh[j]>GPAlowtohigh[j+1]){
+                        swap(GPAlowtohigh[j],GPAlowtohigh[j+1]);
+                        swapstring(namelowtohigh[j],namelowtohigh[j+1]);
+                        swapstring(phonenumberlowtohigh[j],phonenumberlowtohigh[j+1]);
+                }
+            }
+        }
+        cout<<"Students Ranked from Lowest to Highest: ";
+        for(int i=0;i<50;i++){
+            if(namelowtohigh[i]!="null"){
+                cout<<"Name: "<<namelowtohigh[i]<<endl;
+                cout<<"GPA: "<<GPAlowtohigh[i]<<endl;
+                cout<<"Phone: "<<phonenumberlowtohigh[i]<<endl;
+                cout<<endl;
+            }
+        }
+    }else if(order=='H'){
+        for(int i=0;i<49;i++){
+            for(int j=0;j<49;j++){
+                if(GPAhightolow[j]<GPAhightolow[j+1]){
+                        swap(GPAhightolow[j+1],GPAhightolow[j]);
+                        swapstring(namehightolow[j+1],namehightolow[j]);
+                        swapstring(phonenumberhightolow[j+1],phonenumberhightolow[j]);
+                }
+            }
+        }
+        cout<<"Students Ranked from Highest to Lowest: "<<endl;
+        for(int i=0;i<50;i++){
+            if(namehightolow[i]!="null"){
+                cout<<"Name: "<<namehightolow[i]<<endl;
+                cout<<"GPA: "<<GPAhightolow[i]<<endl;
+                cout<<"Phone number: "<<phonenumberhightolow[i]<<endl;
+                cout<<endl;
+            }
+        }
+    }else{
+        cout<<"Invalid choice!"<<endl;
+    }
 
 }
 
 void TopPerformer(){
-
+    double top_GPA=0.0;
+    string top_performer="null";
+    for(int i=1;i<50;i++) {
+        if (GPA[i] > top_GPA && GPA[i] != 0.0) {
+            top_GPA = GPA[i];
+            top_performer = name[i];
+        }
+    }
+    cout<<"Top Performer of the class is "<<top_performer<<" with GPA of "<<top_GPA<<endl;
 }
 
 void SearchStudent(int input_ID){
@@ -304,5 +431,23 @@ void SearchStudent(int input_ID){
 }
 
 void GraphicalRepresentation(){
+    const int maxBarLength = 8;
 
+    for (int i = 0; i < 50; i++) {
+        if (name[i] != "null") {
+            cout << setw(9) << name[i] << " | ";
+
+            // Calculate the length of the bar based on GPA (scaled to maxBarLength)
+            int barLength = (round(GPA[i] / 4 * maxBarLength));
+
+            // Print the bar without moving to a new line
+            for (int j = 0; j < barLength; j++) {
+                cout << '*';
+            }
+
+            // Move to a new line after printing the bars
+            cout << endl;
+        }
+    }
+    cout<<"Note: One '*' is equal to 0.5 GPA."<<endl;
 }
