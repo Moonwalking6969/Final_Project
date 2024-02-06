@@ -7,21 +7,34 @@ using namespace std;
 
 //Declaring and initializing all arrays in global scope for easier access in all functions.
 
+//Initialized the ID array elements with null to show that there are no IDs are stored in the array.
+
 int ID[50] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1,
               -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+
+//Initialized the name array elements with null to show that there are no names are stored in the array.
+
 string name[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                    "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                    "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                    "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                    "null", "null"};
+
+//Initialized the phonenumber array elements with null to show that there are no phone numbers are stored in the array.
+
 string phone_number[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                            "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                            "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                            "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
                            "null", "null", "null", "null", "null", "null"};
+
+//Initialized the GPA array elements with 0.0 to show that there are no GPA are stored in the array.
+
 double GPA[50] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                   0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
                   0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+
+//End of Array Declaration and Initializations
 
 //Function Declarations
 
@@ -73,15 +86,18 @@ int main() {
                 "\nEnter 9 to Search for a student based on his/her ID,   Enter 10 to see Graphical Representation of the class statistics"
              << endl;
         cout << endl;
+
         cout << "Enter your Choice: ";//Prompting user to enter their choice
         cin >> choice;
+
         switch (choice) {
 
             case 1: {
                 cout << "Adding a Student Record: " << endl;//Prompting user what they chose
                 int count = 0;
                 cout << endl;
-                cout << "How many students do you want to add?: ";//Prompting user to input the amount of record they want to input
+                cout
+                        << "How many students do you want to add?: ";//Prompting user to input the amount of record they want to input
                 cin >> count;
 
                 //Since the size of all arrays is 50, so we cannot add more than 50 students.
@@ -576,7 +592,7 @@ void DisplayStudent(int input_ID) {
     /*if in the previous loop the student wasn't found meaning the value of student_found was not set to true by the loop.
       then we prompt the user that no student with the inputted ID were found in the record.*/
 
-     if (!student_found) {
+    if (!student_found) {
         cout << "Provided ID does not match any students in the record." << endl;
         cout << endl;
     }
@@ -639,8 +655,10 @@ void ClassReport() {
         }
     }
 
-    cout << "Highest GPA : " << highest_name << " has achieved a GPA of : " << maximum << endl; //Prompting the user maximum GPA holder's name and his/her GPA
-    cout << "Lowest GPA  : " << lowest_name << " has achieved a GPA of : " << minimum << endl; //Prompting the user minimum GPA holder's name and his/her GPA
+    cout << "Highest GPA : " << highest_name << " has achieved a GPA of : " << maximum
+         << endl; //Prompting the user maximum GPA holder's name and his/her GPA
+    cout << "Lowest GPA  : " << lowest_name << " has achieved a GPA of : " << minimum
+         << endl; //Prompting the user minimum GPA holder's name and his/her GPA
 
     //End of function
 }
@@ -649,42 +667,42 @@ void RankStudents(char order) {
 
     //Array initializations
 
-    double GPAhightolow[50] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                               0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                               0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-    double GPAlowtohigh[50] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                               0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                               0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
-    string namehightolow[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null"};
-    string namelowtohigh[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                "null", "null", "null", "null", "null", "null"};
-    string phonenumberlowtohigh[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null"};
-    string phonenumberhightolow[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
-                                       "null", "null", "null", "null", "null", "null", "null", "null", "null", "null"};
+    double GPAHtoL[50] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+    double GPALtoH[50] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+    string nameHtoL[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null"};
+    string nameLtoH[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                           "null", "null", "null", "null", "null", "null"};
+    string phonenumberLtoH[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null"};
+    string phonenumberHtoL[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                  "null", "null", "null", "null", "null", "null", "null", "null", "null", "null"};
 
     //This for loop assigns all globally declared array values at index i to the values in the local arrays at index i
 
     for (int i = 0; i < 50; i++) {
-        GPAhightolow[i] = GPA[i];
-        GPAlowtohigh[i] = GPA[i];
-        namehightolow[i] = name[i];
-        namelowtohigh[i] = name[i];
-        phonenumberlowtohigh[i] = phone_number[i];
-        phonenumberhightolow[i] = phone_number[i];
+        GPAHtoL[i] = GPA[i];
+        GPALtoH[i] = GPA[i];
+        nameHtoL[i] = name[i];
+        nameLtoH[i] = name[i];
+        phonenumberLtoH[i] = phone_number[i];
+        phonenumberHtoL[i] = phone_number[i];
     }
 
     //These if-else if statement checks for what the user has inputted.
@@ -695,10 +713,10 @@ void RankStudents(char order) {
 
         for (int i = 0; i < 49; i++) {
             for (int j = 0; j < 49; j++) {
-                if (GPAlowtohigh[j] > GPAlowtohigh[j + 1]) {
-                    swap(GPAlowtohigh[j], GPAlowtohigh[j + 1]);
-                    swapstring(namelowtohigh[j], namelowtohigh[j + 1]);
-                    swapstring(phonenumberlowtohigh[j], phonenumberlowtohigh[j + 1]);
+                if (GPALtoH[j] > GPALtoH[j + 1]) {
+                    swap(GPALtoH[j], GPALtoH[j + 1]);
+                    swapstring(nameLtoH[j], nameLtoH[j + 1]);
+                    swapstring(phonenumberLtoH[j], phonenumberLtoH[j + 1]);
                 }
             }
         }
@@ -707,10 +725,10 @@ void RankStudents(char order) {
 
         cout << "Students Ranked from Lowest to Highest: " << endl;
         for (int i = 0; i < 50; i++) {
-            if (namelowtohigh[i] != "null") {
-                cout << "Name: " << namelowtohigh[i] << endl;
-                cout << "GPA: " << GPAlowtohigh[i] << endl;
-                cout << "Phone: " << phonenumberlowtohigh[i] << endl;
+            if (nameLtoH[i] != "null") {
+                cout << "Name: " << nameLtoH[i] << endl;
+                cout << "GPA: " << GPALtoH[i] << endl;
+                cout << "Phone: " << phonenumberLtoH[i] << endl;
                 cout << endl;
             }
         }
@@ -720,10 +738,10 @@ void RankStudents(char order) {
 
         for (int i = 0; i < 49; i++) {
             for (int j = 0; j < 49; j++) {
-                if (GPAhightolow[j] < GPAhightolow[j + 1]) {
-                    swap(GPAhightolow[j + 1], GPAhightolow[j]);
-                    swapstring(namehightolow[j + 1], namehightolow[j]);
-                    swapstring(phonenumberhightolow[j + 1], phonenumberhightolow[j]);
+                if (GPAHtoL[j] < GPAHtoL[j + 1]) {
+                    swap(GPAHtoL[j + 1], GPAHtoL[j]);
+                    swapstring(nameHtoL[j + 1], nameHtoL[j]);
+                    swapstring(phonenumberHtoL[j + 1], phonenumberHtoL[j]);
                 }
             }
         }
@@ -732,10 +750,10 @@ void RankStudents(char order) {
 
         cout << "Students Ranked from Highest to Lowest: " << endl;
         for (int i = 0; i < 50; i++) {
-            if (namehightolow[i] != "null") {
-                cout << "Name: " << namehightolow[i] << endl;
-                cout << "GPA: " << GPAhightolow[i] << endl;
-                cout << "Phone number: " << phonenumberhightolow[i] << endl;
+            if (nameHtoL[i] != "null") {
+                cout << "Name: " << nameHtoL[i] << endl;
+                cout << "GPA: " << GPAHtoL[i] << endl;
+                cout << "Phone number: " << phonenumberHtoL[i] << endl;
                 cout << endl;
             }
         }
