@@ -444,6 +444,7 @@ void swap(double &first_entry, double &last_entry) {
     //End of function
 }
 
+
 void swapstring(string &first_entry, string &last_entry) {
 
     //Function to swap strings. Used later in another function.
@@ -633,25 +634,52 @@ void ClassReport() {
     //2nd Section's Variable initialization
 
     double maximum = 0.0;
-    double minimum = GPA[1];
+    double bubblesortedgpas[50]={0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                                 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
     string highest_name = "null";
-    string lowest_name = "null";
+    string bubblesortedname[50] = {"null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                   "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                   "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                   "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null", "null",
+                                   "null", "null"};
+    double minimum =0.0;
+    string lowest_name="null";
+    //Copying values from the original array to locally made ones
+
+    for(int i=0;i<50;i++){
+        bubblesortedgpas[i]=GPA[i];
+        bubblesortedname[i]=name[i];
+    }
+
+    //Bubble sorting the locally made arrays so that i can get the lowest GPA in the record.
+
+    for(int i=0;i<50;i++){
+        for(int j=0;j<50;j++){
+            if (bubblesortedname[j] > bubblesortedname[j + 1]) {
+                swapstring(bubblesortedname[j], bubblesortedname[j + 1]);
+                swap(bubblesortedgpas[j], bubblesortedgpas[j + 1]);
+            }
+        }
+    }
 
     //This for loop checks for the maximum GPA holder.
 
     for (int i = 1; i < 50; i++) {
-        if (GPA[i] > maximum && GPA[i] != 0.0) {
+        if (GPA[i] != 0.0) {
             maximum = GPA[i];
             highest_name = name[i];
+            i=50;
         }
     }
 
-    //This for loop checks for the miniumum GPA holder.
+    //This for loop would assign the first non-zero or non-null values of Bubble-Sorted array to the lowest_name and
+    //minimum
 
-    for (int i = 1; i < 50; i++) {
-        if (GPA[i] < minimum) {
-            minimum = GPA[i];
-            lowest_name = name[i];
+    for(int i=1;i<50;i++){
+        if(bubblesortedgpas[i]<maximum && (bubblesortedgpas[i]!=0.0 || bubblesortedname[i]!="null" )){
+            lowest_name=bubblesortedname[i];
+            minimum=bubblesortedgpas[i];
         }
     }
 
@@ -817,7 +845,7 @@ void GraphicalRepresentation() {
 
     //This for loop checks for every non-null elements of name array. Then prompts the graph.
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 50; i++) {
         if (name[i] != "null") {
 
             //This prints the name of the student if its non-null, with enough spacing for names that are 20 characters long
