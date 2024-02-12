@@ -30,9 +30,9 @@ string phone_number[50] = {"null", "null", "null", "null", "null", "null", "null
 
 //Initialized the GPA array elements with 0.0 to show that there are no GPA are stored in the array.
 
-double GPA[50] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0,
-                  0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+double GPA[50] = {-1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
+                  -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0,
+                  -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0};
 
 //End of Array Declaration and Initializations
 
@@ -63,14 +63,14 @@ void SearchStudent(int);
 void GraphicalRepresentation();
 
 //End of Function Declaration
-
+Co
 int main() {
-    cout << "****************************************" << endl;
-    cout << "*    Welcome to the Student Grade      *" << endl;
-    cout << "*         Management System!           *" << endl;
-    cout << "****************************************" << endl;
-    cout << endl;
-
+        cout<<"/_____________________________________________________________________________________________________________________/"<<endl;
+        cout<<"/                                    Welcome To Student Grading System!                                               /"<<endl;
+        cout<<"/                                 Hope You Have An Absolutely Amazing Day!                                            /"<<endl;
+        cout<<"/                                            From: Hassaan Raza                                                       /"<<endl;
+        cout<<"/                                               ID:F2023065055                                                        /"<<endl;
+        cout<<"/_____________________________________________________________________________________________________________________/"<<endl;
     //Variable initialization
 
     int choice = 0;
@@ -278,10 +278,28 @@ int main() {
                         if (ID[i] == input_ID) {
                             cout << "Enter marks of the first subject (4 for A,3 for B,2 for C and 0 for F): ";
                             cin >> marks1;
+                            if(marks1>4 || marks1<0 || marks1==1){
+                                do{
+                                    cout<<"Invalid marks. Please enter correct marks according to the grading system: ";
+                                    cin>>marks1;
+                                }while(marks1>4 || marks1<0 || marks1==1);
+                            }
                             cout << "Enter marks of the second subject (4 for A,3 for B,2 for C and 0 for F): ";
                             cin >> marks2;
+                            if(marks2>4 || marks2<0 || marks2==1){
+                                do{
+                                    cout<<"Invalid marks. Please enter correct marks according to the grading system: ";
+                                    cin>>marks2;
+                                }while(marks2>4 || marks2<0 || marks2==1);
+                            }
                             cout << "Enter marks of the third subject (4 for A,3 for B,2 for C and 0 for F): ";
                             cin >> marks3;
+                            if(marks3>4 || marks3<0 || marks3==1){
+                                do{
+                                    cout<<"Invalid marks. Please enter correct marks according to the grading system: ";
+                                    cin>>marks3;
+                                }while(marks3>4 || marks3<0 || marks3==1);
+                            }
 
                             //Calling the function by values
 
@@ -656,7 +674,7 @@ void ClassReport() {
 
     for(int i=0;i<50;i++){
         for(int j=0;j<50;j++){
-            if (bubblesortedname[j] > bubblesortedname[j + 1]) {
+            if (bubblesortedname[j] > bubblesortedname[j + 1] && bubblesortedname[i]!="null" && bubblesortedgpas[i]!=-1.0) {
                 swapstring(bubblesortedname[j], bubblesortedname[j + 1]);
                 swap(bubblesortedgpas[j], bubblesortedgpas[j + 1]);
             }
@@ -677,7 +695,7 @@ void ClassReport() {
     //minimum
 
     for(int i=1;i<50;i++){
-        if(bubblesortedgpas[i]<maximum && (bubblesortedgpas[i]!=0.0 || bubblesortedname[i]!="null" )){
+        if(bubblesortedgpas[i]<maximum && bubblesortedname[i]!="null" ){
             lowest_name=bubblesortedname[i];
             minimum=bubblesortedgpas[i];
         }
@@ -882,11 +900,22 @@ void GraphicalRepresentation() {
             }
 
             // Move to a new line after printing the bars
-
-            cout << endl;
-            cout << endl;
+            cout<<endl;
         }
     }
+
+    //Prints spaces before the line
+    cout<<left<<setw(20)<<setfill(' ')<<" ";
+    //Prints the line after the spaces
+    cout<<setw(13)<<setfill('-')<<"-"<<endl;
+    //Prints spaces before the Length marking
+    cout<<setw(20)<<setfill(' ')<<" ";
+    //Prints the Length markings
+    for(int i=0;i<=3;i++){
+        cout<<i<<"   ";
+    }
+    //New line character
+    cout<<endl;
     cout << "Note: One '*' is equal to 0.25 GPA." << endl; //Prompting user the value of one "*"
 
     //End of function
