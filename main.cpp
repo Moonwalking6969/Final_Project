@@ -63,7 +63,7 @@ void SearchStudent(int);
 void GraphicalRepresentation();
 
 //End of Function Declaration
-Co
+
 int main() {
         cout<<"/_____________________________________________________________________________________________________________________/"<<endl;
         cout<<"/                                    Welcome To Student Grading System!                                               /"<<endl;
